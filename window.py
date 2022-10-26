@@ -157,7 +157,7 @@ class Dimensions:
 
     @property
     def icon_path(self):
-        return "images/IMG_3263.jpeg"
+        return "images/burrito_icon.jpeg"
 
 
 
