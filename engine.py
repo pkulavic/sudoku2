@@ -264,7 +264,7 @@ class SudokuBoard:
         for i in range(81):
             if not self.region_is_valid(i):
                 print("Puzzle invalid; problem at index", i)
-                return
+                raise ValueError(f"Puzzle invalid; problem at index {i}")
         print("Valid puzzle")
 
     def remove_clues(self, holes: int):
@@ -289,6 +289,26 @@ class SudokuBoard:
     def set_value(self, pos, val):
         """Set the value at the given position."""
         self.array[pos].value = val
+    
+    def _clear(self):
+        """resets the puzzle array to empty"""
+        self.array = [Square() for _ in range(81)]
+        self.clues = []
+        self.solution =[]
+
+    def generate_puzzle(self, number_of_clues):
+        """Abstraction of the steps required to reach a puzzle.
+        Steps include:
+            1. recursively fill the puzzle
+            2. poke holes
+            3. set the clue array
+        number_of_clues represents the desired number of clues in the puzzle."""
+        self._clear()
+        self.fill_puzzle()
+        self.test_filled_puzzle_is_valid()
+        self.remove_clues(81 - number_of_clues)
+        self.set_clue_array()
+
 
 
 
