@@ -106,17 +106,6 @@ class SudokuBoard:
         self.array[pos].value = value
 #Square ^
 
-    def generate_clues(self, level: int):
-        """
-        The level of difficulty is represented by 'level', which equals 
-        the number of clues generated. The more clues there are, the easier 
-        the puzzle is to solve.
-        """
-        count = 0
-        while count < level:
-            self.fill_random_cell()
-            count += 1
-
     def find_negaters(self, pos: int):
         negaters = set()
 
